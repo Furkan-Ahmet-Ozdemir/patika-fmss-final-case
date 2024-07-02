@@ -1,4 +1,4 @@
-package com.example.patikafmssfinalcase.dto.request;
+package com.patika.estateagentannouncementservice.dto.request;
 import lombok.*;
 
 @NoArgsConstructor

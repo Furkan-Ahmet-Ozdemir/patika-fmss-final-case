@@ -1,4 +1,4 @@
-package com.example.patikafmssfinalcase.model;
+package com.patika.estateagentannouncementservice.model;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Villa extends Residence{
+public class Villa extends Residence {
     private Integer floorCount;
     private boolean hasPool;
 

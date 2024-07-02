@@ -1,5 +1,7 @@
-package com.example.patikafmssfinalcase.repository;
-import com.example.patikafmssfinalcase.model.Residence;
+package com.patika.estateagentannouncementservice.repository;
+
+import com.patika.estateagentannouncementservice.model.Residence;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

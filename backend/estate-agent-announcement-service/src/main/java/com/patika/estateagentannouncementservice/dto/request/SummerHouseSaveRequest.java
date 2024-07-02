@@ -1,5 +1,5 @@
-package com.example.patikafmssfinalcase.dto.request;
-import com.patika.estateagent.model.Residence;
+package com.patika.estateagentannouncementservice.dto.request;
+import com.patika.estateagentannouncementservice.model.Residence;
 import lombok.*;
 
 @NoArgsConstructor

@@ -1,4 +1,4 @@
-package com.example.patikafmssfinalcase.dto.response;
+package com.patika.estateagentannouncementservice.dto.response;
 
 import lombok.*;
 

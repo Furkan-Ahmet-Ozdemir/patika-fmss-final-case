@@ -1,6 +1,6 @@
-package com.example.patikafmssfinalcase.dto.response;
+package com.patika.estateagentannouncementservice.dto.response;
 
-import com.patika.estateagent.constants.EstateAgentConstants;
+import com.patika.estateagentannouncementservice.constants.EstateAgentConstants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.example.patikafmssfinalcase.constants;
+package com.patika.estateagentannouncementservice.constants;
 
 
 import lombok.AccessLevel;

@@ -1,8 +1,9 @@
-package com.example.patikafmssfinalcase.converter;
+package com.patika.estateagentannouncementservice.converter;
 
-import com.patika.estateagent.dto.request.SummerHouseSaveRequest;
-import com.patika.estateagent.dto.response.SummerHouseResponse;
-import com.patika.estateagent.model.SummerHouse;
+
+import com.patika.estateagentannouncementservice.dto.request.SummerHouseSaveRequest;
+import com.patika.estateagentannouncementservice.dto.response.SummerHouseResponse;
+import com.patika.estateagentannouncementservice.model.SummerHouse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
