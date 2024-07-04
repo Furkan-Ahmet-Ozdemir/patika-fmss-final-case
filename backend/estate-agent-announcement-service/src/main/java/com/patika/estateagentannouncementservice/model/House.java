@@ -1,5 +1,8 @@
 package com.patika.estateagentannouncementservice.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @NoArgsConstructor
@@ -7,7 +10,13 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+@Entity
+@Table(name = "houses")
 public class House extends Residence {
+
+    @Id
+    private Long id;
+
     private Integer floorNumber;
     private Integer flatNumber;
 

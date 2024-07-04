@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: estate-agent-gw
+  cloud:
+    gateway:
+      routes:
+        - id: estate-agent-user-service
+          uri: lb://ESTATE-AGENT-USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+        - id: estate-agent-announcement-service
+          uri: lb://ESTATE-AGENT-ANNOUNCEMENT-SERVICE
+          predicates:
+            - Path=/api/v1/announcements/**
+#        - id: kitapyurdum-product-service
+#          uri: lb://KITAPYURDUM-PRODUCT-SERVICE
+#          predicates:
+#            - Path=/api/v1/products/**
+#        - id: kitapyurdum-publisher-service
+#          uri: lb://KITAPYURDUM-PUBLISHER-SERVICE
+#          predicates:
+#            - Path=/api/v1/publishers/**
+#        - id: kitapyurdum-invoice-service
+#          uri: lb://KITAPYURDUM-INVOICE-SERVICE
+#          predicates:
+#            - Path=/api/v1/invoices/**
+#        - id: kitapyurdum-notification-service
+#          uri: lb://KITAPYURDUM-NOTIFICATION-SERVICE
+#          predicates:
+#            - Path=/api/v1/notifications/**
+
+server:
+  port: 8080
