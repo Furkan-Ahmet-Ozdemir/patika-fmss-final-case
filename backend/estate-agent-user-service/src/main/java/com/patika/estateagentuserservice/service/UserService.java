@@ -1,13 +1,11 @@
 package com.patika.estateagentuserservice.service;
 
 import com.patika.estateagentuserservice.converter.UserConverter;
-import com.patika.estateagentuserservice.dto.PackageDTO;
 import com.patika.estateagentuserservice.dto.UserDTO;
 import com.patika.estateagentuserservice.model.User;
 import com.patika.estateagentuserservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.Date;
 import java.util.List;
 
 @Service

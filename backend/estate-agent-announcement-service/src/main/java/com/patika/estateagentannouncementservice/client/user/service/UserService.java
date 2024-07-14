@@ -4,7 +4,6 @@ package com.patika.estateagentannouncementservice.client.user.service;
 import com.patika.estateagentannouncementservice.client.user.UserClient;
 import com.patika.estateagentannouncementservice.client.user.response.UserResponse;
 
-import com.patika.estateagentannouncementservice.rest.GenericResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,18 +18,18 @@ public class UserService {
 
     private final UserClient userClient;
 
-    public UserResponse getPublisherByName(String publisherName) {
+    public UserResponse getUserByName(String userName) {
 
-        GenericResponse<UserResponse> response = userClient.getByName(publisherName);
+        UserResponse response = userClient.getUserByUsername(userName);
 
         if (response != null) {
             log.error("Publisher bulunamadı!");
         }
 
-        return response.getData();
+        return response;
     }
 
-    public Optional<UserResponse> getById(Long publisherId) {
-        return userClient.findById(publisherId);
+    public Optional<UserResponse> getById(Long userId) {
+        return Optional.ofNullable(userClient.getUserById(userId));
     }
 }

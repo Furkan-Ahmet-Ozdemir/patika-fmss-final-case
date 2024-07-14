@@ -1,6 +1,5 @@
 package com.patika.estateagentannouncementservice.client.user.response;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
