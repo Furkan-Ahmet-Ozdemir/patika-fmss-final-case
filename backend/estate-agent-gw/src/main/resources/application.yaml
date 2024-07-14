@@ -12,22 +12,14 @@ spring:
           uri: lb://ESTATE-AGENT-ANNOUNCEMENT-SERVICE
           predicates:
             - Path=/api/v1/announcements/**
-#        - id: kitapyurdum-product-service
-#          uri: lb://KITAPYURDUM-PRODUCT-SERVICE
-#          predicates:
-#            - Path=/api/v1/products/**
-#        - id: kitapyurdum-publisher-service
-#          uri: lb://KITAPYURDUM-PUBLISHER-SERVICE
-#          predicates:
-#            - Path=/api/v1/publishers/**
-#        - id: kitapyurdum-invoice-service
-#          uri: lb://KITAPYURDUM-INVOICE-SERVICE
-#          predicates:
-#            - Path=/api/v1/invoices/**
-#        - id: kitapyurdum-notification-service
-#          uri: lb://KITAPYURDUM-NOTIFICATION-SERVICE
-#          predicates:
-#            - Path=/api/v1/notifications/**
+        - id: estate-agent-package-service
+          uri: lb://ESTATE-AGENT-PACKAGE-SERVICE
+          predicates:
+            - Path=/api/v1/packages/**
+        - id: estate-agent-payment-service
+          uri: lb://ESTATE-AGENT-PAYMENT-SERVICE
+          predicates:
+            - Path=/api/v1/payments/**
 
 server:
   port: 8080
