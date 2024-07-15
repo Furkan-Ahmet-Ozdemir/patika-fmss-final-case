@@ -1,5 +1,8 @@
 package com.patika.estateagentannouncementservice.service;
 
+import com.patika.estateagentannouncementservice.client.user.dto.UserDTO;
+import com.patika.estateagentannouncementservice.client.user.response.UserResponse;
+import com.patika.estateagentannouncementservice.client.user.service.UserService;
 import com.patika.estateagentannouncementservice.dto.AnnouncementDTO;
 import com.patika.estateagentannouncementservice.dto.request.CreateAnnouncementRequest;
 import com.patika.estateagentannouncementservice.dto.request.UpdateAnnouncementRequest;
@@ -10,8 +13,11 @@ import com.patika.estateagentannouncementservice.repository.AnnouncementReposito
 import com.patika.estateagentannouncementservice.converter.AnnouncementConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,26 +25,41 @@ public class AnnouncementService {
 
     private final AnnouncementRepository announcementRepository;
     private final AnnouncementConverter announcementConverter;
+    private final UserService userService;
 
     @Autowired
-    public AnnouncementService(AnnouncementRepository announcementRepository, AnnouncementConverter announcementConverter) {
+    public AnnouncementService(AnnouncementRepository announcementRepository, AnnouncementConverter announcementConverter, UserService userService) {
         this.announcementRepository = announcementRepository;
         this.announcementConverter = announcementConverter;
+        this.userService = userService;
     }
 
     public AnnouncementDTO createAnnouncement(CreateAnnouncementRequest request) {
-        Announcement announcement = new Announcement();
-        announcement.setUserId(request.getUserId());
-        announcement.setTitle(request.getTitle());
-        announcement.setDescription(request.getDescription());
-        announcement.setAnnouncementStatus(AnnouncementStatus.IN_REVIEW);
-        announcement.setCreatedAt(LocalDateTime.now());
-        announcement.setUpdatedAt(LocalDateTime.now());
-        announcement.setValidUntil(LocalDateTime.now().plusDays(30));
-        announcement.setType(AnnouncementType.valueOf(request.getType()));
 
-        Announcement savedAnnouncement = announcementRepository.save(announcement);
-        return announcementConverter.convertToDTO(savedAnnouncement);
+        if(userService.getById(request.getUserId()).getTotalAnnouncementCount() >= 1 && userService.getById(request.getUserId()).getExpiryDate().isBefore(LocalDate.now())){
+
+            Announcement announcement = new Announcement();
+            announcement.setUserId(request.getUserId());
+            announcement.setTitle(request.getTitle());
+            announcement.setDescription(request.getDescription());
+            announcement.setAnnouncementStatus(AnnouncementStatus.IN_REVIEW);
+            announcement.setCreatedAt(LocalDateTime.now());
+            announcement.setUpdatedAt(LocalDateTime.now());
+            announcement.setValidUntil(LocalDateTime.now().plusDays(30));
+            announcement.setType(AnnouncementType.valueOf(request.getType()));
+
+            Announcement savedAnnouncement = announcementRepository.save(announcement);
+
+            UserDTO userResponse = userService.getById(request.getUserId());
+            userResponse.setTotalAnnouncementCount(userResponse.getTotalAnnouncementCount()-1);
+
+            userService.updateUser(request.getUserId(), userResponse );
+
+            return announcementConverter.convertToDTO(savedAnnouncement);
+        }else {
+            throw new NullPointerException();
+        }
+
     }
 
     public AnnouncementDTO updateAnnouncement(Long id, UpdateAnnouncementRequest request) {

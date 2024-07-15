@@ -2,6 +2,8 @@ package com.patika.estateagentannouncementservice.client.user.service;
 
 
 import com.patika.estateagentannouncementservice.client.user.UserClient;
+import com.patika.estateagentannouncementservice.client.user.dto.UserDTO;
+import com.patika.estateagentannouncementservice.client.user.model.User;
 import com.patika.estateagentannouncementservice.client.user.response.UserResponse;
 
 import lombok.RequiredArgsConstructor;
@@ -18,9 +20,9 @@ public class UserService {
 
     private final UserClient userClient;
 
-    public UserResponse getUserByName(String userName) {
+    public UserDTO getUserByName(String userName) {
 
-        UserResponse response = userClient.getUserByUsername(userName);
+        UserDTO response = userClient.getUserByUsername(userName);
 
         if (response != null) {
             log.error("Publisher bulunamadı!");
@@ -29,7 +31,11 @@ public class UserService {
         return response;
     }
 
-    public Optional<UserResponse> getById(Long userId) {
-        return Optional.ofNullable(userClient.getUserById(userId));
+    public UserDTO getById(Long userId) {
+        return userClient.getUserById(userId);
+    }
+
+    public UserDTO updateUser(Long id, UserDTO userDTO) {
+        return userClient.updateUser(id,userDTO);
     }
 }
